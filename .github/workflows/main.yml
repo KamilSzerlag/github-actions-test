@@ -11,6 +11,6 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.pulls.addLabels({
-              labels: ["xenon"]
-            })
+            github.rest.pulls.update({
+              body { labels: [{name: 'xenon'}] }
+            });
