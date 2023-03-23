@@ -5,11 +5,17 @@ on:
     types: opened
 
 jobs:
-  add_labels:
+  label_pr:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-ecosystem/action-add-labels@v1
+      - uses: actions/github-script@v6
         with:
-          labels: |
-            xenon
+          script: |
+            github.rest.pr.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["triage"]
+            })
