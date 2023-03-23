@@ -12,5 +12,5 @@ jobs:
         with:
           script: |
             github.rest.pulls.update({
-              body { labels: [{name: 'xenon'}] }
+              body: { labels: [{name: 'xenon'}] }
             });
