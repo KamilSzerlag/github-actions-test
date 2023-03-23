@@ -5,17 +5,12 @@ on:
     types: opened
 
 jobs:
-  label_pr:
+  label_pulls:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
     steps:
       - uses: actions/github-script@v6
         with:
           script: |
-            github.rest.pr.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ["triage"]
+            github.rest.pulls.addLabels({
+              labels: ["xenon"]
             })
